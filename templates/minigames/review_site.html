@@ -1,0 +1,84 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+{% block script %}
+<script src="{% static 'js/likes.js' %}"></script>
+{% endblock %}
+{% block title %}Review{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/review_site.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="review-container">
+    <!-- Header Section -->
+    <div class="review-header">
+        <h1 class="review-title">{{ review.title }}</h1>
+        <h2 class="review-game">{{ review.game }}</h2>
+    </div>
+
+    <!-- Author Section -->
+    <div class="review-author">
+        <p><a href="{% url 'user_profile' review.author.id %}">@{{ review.author.username }}</a></p>
+    </div>
+
+    <!-- Meta Section -->
+    <div class="review-meta">
+        {% if review.edited %}
+        <p class="meta-item">Edited at: {{ review.updated_at }}</p>
+        {% endif %}
+        <p class="meta-item">Created at: {{ review.created_at }}</p>
+    </div>
+
+    <!-- Content Section -->
+    <div class="review-content">
+        <p>{{ review.content }}</p>
+    </div>
+
+    <!-- Stats and Actions -->
+    <div class="review-stats-actions">
+        <div class="stats">
+            <p id="review-{{ review.id }}-likes">Likes: {{ review.like_count }}</p>
+            <p id="review-{{ review.id }}-dislikes">Dislikes: {{ review.dislike_count }}</p>
+        </div>
+        <div class="actions">
+            <button class="btn like-button" data-id="{{ review.id }}" data-type="review">Like</button>
+            <button class="btn dislike-button" data-id="{{ review.id }}" data-type="review">Dislike</button>
+            <a href="{% url 'comment_create' 'review' review.id %}" class="btn">Comment</a>
+            {% if user == review.author %}
+            <a href="{% url 'review_edit' review.id %}" class="btn">Manage</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="review-comments">
+        <h3>Comments</h3>
+        {% for comment in comments %}
+        <div class="comment-item">
+            <div class="comment-header">
+                <p><a href="{% url 'user_profile' comment.author.id %}">@{{ comment.author.username }}</a></p>
+                <p>Created at: {{ comment.created_at }}</p>
+                {% if comment.edited %}
+                <p>Edited at: {{ comment.updated_at }}</p>
+                {% endif %}
+            </div>
+            <div class="comment-content">
+                <p>{{ comment.content }}</p>
+            </div>
+            <div class="stats">
+                <p id="comment-{{ comment.id }}-likes">Likes: {{ comment.like_count }}</p>
+                <p id="comment-{{ comment.id }}-dislikes">Dislikes: {{ comment.dislike_count }}</p>
+            </div>
+            <div class="comment-actions">
+                <button class="btn like-button" data-id="{{ comment.id }}" data-type="comment">Like</button>
+                <button class="btn dislike-button" data-id="{{ comment.id }}" data-type="comment">Dislike</button>
+                {% if user == comment.author %}
+                <a href="{% url 'comment_edit' comment.id %}" class="btn">Manage</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

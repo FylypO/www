@@ -1,0 +1,34 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+{% block title %}Comment{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/comment_form.css' %}">
+<link rel="stylesheet" href="{% static 'css/form_validation.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="form-title">Comment</h1>
+    <form method="POST" action="" class="comment-form" id="commentForm">
+        {% csrf_token %}
+        <div class="form-errors">
+            {{ form.non_field_errors }}
+        </div>
+        <div class="form-fields">
+            {{ form.as_p }}
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Submit" class="submit-button">
+            {% if form.instance.pk %}
+            <form method="post" action="{% url 'comment_delete' form.instance.id %}" class="inline-form">
+                {% csrf_token %}
+                <button type="submit" class="delete-button">Delete Comment</button>
+            </form>
+            {% else %}
+            <a href="{{ form.instance.content_object.get_absolute_url }}" class="cancel-button">Cancel</a>
+            {% endif %}
+        </div>
+    </form>
+</div>
+{% endblock %}

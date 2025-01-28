@@ -1,0 +1,96 @@
+/* General styling for the login container */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it scales to smaller devices */
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-size: 1.8rem; /* Adjusted for better scaling */
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container form p {
+    margin-bottom: 15px;
+}
+
+.login-container form button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container form button:hover {
+    background-color: #0056b3;
+}
+
+.login-container p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-container p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-container p a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .login-container {
+        max-width: 90%; /* Allow for better scaling on tablets */
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    .login-container h1 {
+        font-size: 1.5rem; /* Reduce the font size of the heading */
+    }
+
+    .login-container form button {
+        font-size: 14px; /* Reduce the font size of the button */
+        padding: 10px; /* Adjust padding for the button */
+    }
+
+    .login-container p {
+        font-size: 0.9rem; /* Slightly smaller text for the link section */
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        max-width: 95%; /* Ensure it's almost full width on very small screens */
+        padding: 10px; /* Adjust padding further for small screens */
+    }
+
+    .login-container h1 {
+        font-size: 1.3rem; /* Further reduce heading size for small devices */
+    }
+
+    .login-container form button {
+        font-size: 14px; /* Continue to scale down button font */
+        padding: 8px; /* Reduce button padding */
+    }
+
+    .login-container p {
+        font-size: 0.85rem; /* Make the text a bit smaller */
+    }
+}

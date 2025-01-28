@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MiNIGames{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'CSS/base.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+    {% block script %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navtop">
+                <div class="logo">
+                    <a href="/">
+                        <img src="{% static 'media/logo.png' %}" alt="MiNIGames Logo">
+                    </a>
+                </div>
+                <div class="site-title">
+                    <h1>MiNIGames</h1>
+                </div>
+            </div>
+            <div class="navbottom">
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}">HOME</a></li>
+                    <li><a href="{% url 'games' %}">GAMES</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'reviews' %}">REVIEWS</a></li>
+                        <li><a href="{% url 'posts' %}">POSTS</a></li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <li class="right"><a href="{% url 'user_profile' user.id %}">{{ user.username }}</a></li>
+                        <li class="right"><a href="{% url 'account_logout' %}">LOGOUT</a></li>
+                    {% else %}
+                        <li class="right"><a href="{% url 'account_login' %}">LOGIN</a></li>
+                        <li class="right"><a href="{% url 'account_signup' %}">REGISTER</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 MiNIGames by FylypO</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+

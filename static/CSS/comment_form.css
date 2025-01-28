@@ -1,0 +1,142 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; /* Bazowy rozmiar fontu */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    text-align: center;
+    font-size: 1.8rem; /* Skaluje się w zależności od font-size bazowego */
+    color: #007bff;
+    margin-bottom: 1.5rem;
+}
+
+/* Form */
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Odstępy między polami */
+}
+
+.form-errors {
+    color: #d9534f;
+    font-size: 1rem; /* Dynamiczny rozmiar błędów */
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.75rem; /* Względne odstępy */
+    font-size: 1rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.25rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0.25rem rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Buttons */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Elastyczny układ przy mniejszych ekranach */
+    gap: 1rem;
+}
+
+button,
+a.cancel-button,
+.submit-button,
+.delete-button {
+    padding: 0.75rem 1.25rem; /* Ujednolicamy padding dla wszystkich przycisków */
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%; /* Zapewnia, że przyciski mają tę samą szerokość */
+    max-width: 250px; /* Ustalona maksymalna szerokość przycisków */
+}
+
+
+button:active,
+a.cancel-button:active {
+    transform: scale(0.95); /* Efekt kliknięcia */
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.cancel-button {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.cancel-button:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .form-actions {
+        flex-direction: column; /* Układ pionowy na małych ekranach */
+        align-items: stretch;
+    }
+
+    button,
+    a.cancel-button {
+        width: 100%; /* Przyciski na pełną szerokość */
+    }
+}

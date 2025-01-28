@@ -1,0 +1,20 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+    <h1>Sign Up</h1>
+    <form method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn signup-button">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'account_login' %}">Login</a></p>
+</div>
+{% endblock %}

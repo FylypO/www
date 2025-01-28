@@ -1,0 +1,193 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Review Container */
+.review-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+}
+
+.review-title {
+    font-size: 2rem;
+    color: #007bff;
+}
+
+.review-game {
+    font-size: 1.5rem;
+    color: #555;
+    text-align: right;
+}
+
+/* Author Section */
+.review-author {
+    margin-bottom: 1rem;
+}
+
+.review-author a {
+    font-size: 1.2rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.review-author a:hover {
+    text-decoration: underline;
+}
+
+/* Meta Section */
+.review-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.meta-item {
+    font-size: 0.95rem;
+}
+
+/* Content Section */
+.review-content {
+    padding: 1rem 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Stats and Actions */
+.review-stats-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stats{
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    gap: 1rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.actions .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.actions .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Comments Section */
+.review-comments {
+    margin-top: 2rem;
+}
+
+.comment-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.comment-content {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.comment-actions .btn {
+    background-color: #28a745;
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-actions .btn:hover {
+    background-color: #218838;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .review-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .review-stats-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-title {
+        font-size: 1.6rem;
+    }
+
+    .review-game {
+        font-size: 1.2rem;
+    }
+
+    .actions .btn,
+    .comment-actions .btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+    }
+}

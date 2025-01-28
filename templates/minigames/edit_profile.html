@@ -1,0 +1,20 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+{% block title %}Edit Profile{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+{% endblock %}
+{% block content %}
+<h1>Edit Profile</h1>
+<form method="post" enctype="multipart/form-data" id="profileForm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<form method="post" action="{% url 'profile_delete' user_id=request.user.id %}" class="inline-form">
+    {% csrf_token %}
+    <button type="submit" class="btn delete-button">Delete Profile</button>
+</form>
+<script src="{% static 'js/profile_validation.js' %}"></script>
+{% endblock %}

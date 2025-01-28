@@ -1,0 +1,22 @@
+.email-confirmation-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.email-confirmation-container h1 {
+    color: #ff0000;
+    font-size: 2em;
+}
+
+.email-confirmation-container p {
+    font-size: 1.2em;
+}
+
+.email-confirmation-container a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.email-confirmation-container a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,25 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+{% block title %}Games{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/games.css' %}">
+{% endblock %}
+{% block content %}
+<div class="games-container">
+    <h1>Games</h1>
+    <div class="games-grid">
+        {% for game in games %}
+        <div class="game-item">
+            <a href="/games/{{ game.id }}" class="game-link">
+                <div class="game-thumbnail" style="background-image: url('{{ game.image.url }}');">
+                    <div class="game-overlay">
+                        <h2 class="game-title">{{ game.title }}</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

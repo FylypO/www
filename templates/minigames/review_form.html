@@ -1,0 +1,35 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+{% block title %}Review{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'CSS/review_form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form_validation.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <h1>Review</h1>
+    <form method="POST" action="" class="review-form" id="reviewForm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ form.non_field_errors }}
+        {% if form.game.field.widget.attrs.disabled %}
+            <input type="hidden" name="game" value="{{ form.fields.game.initial.id }}">
+        {% endif %}
+        <input type="hidden" name="next" value="{{ redirect_url }}">
+        <input type='submit' value='Submit' class="submit-button">
+    </form>
+    {% if form.instance.pk %}
+        <form method="post" action="{% url 'review_delete' form.instance.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="delete-button">Delete Review</button>
+        </form>
+    {% else %}
+        <a href="{{ redirect_url }}" class="delete-button">Cancel</a>
+    {% endif %}
+</div>
+
+{% endblock %}
+{% block script %}
+<script src="{% static 'js/review_form_validation.js' %}"></script>
+{% endblock %}

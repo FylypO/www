@@ -1,0 +1,57 @@
+.api-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.api-container h1 {
+    margin-bottom: 20px;
+}
+
+.api-container form {
+    margin-bottom: 20px;
+}
+
+.api-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.api-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.api-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.api-container button:hover {
+    background-color: #0056b3;
+}
+
+#api-results {
+    text-align: left;
+}
+
+#api-results pre {
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-x: auto;
+}

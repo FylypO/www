@@ -1,0 +1,35 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+{% block title %}Post{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'CSS/post_form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form_validation.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="form-title">Post</h1>
+    <form method="POST" action="" class="post-form" id="postForm">
+        {% csrf_token %}
+        <div class="form-errors">
+            {{ form.non_field_errors }}
+        </div>
+        <div class="form-fields">
+            {{ form.as_p }}
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Submit" class="submit-button">
+            {% if form.instance.pk %}
+                <form method="post" action="{% url 'post_delete' form.instance.id %}" class="inline-form">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-button">Delete Post</button>
+                </form>
+            {% else %}
+                <a href="{% url 'posts' %}" class="cancel-button">Cancel</a>
+            {% endif %}
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block script %}
+<script src="{% static 'js/post_form_validation.js' %}"></script>
+{% endblock %}

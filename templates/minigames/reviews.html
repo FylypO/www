@@ -1,0 +1,63 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+{% block title %}Reviews{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/likes.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="Reviews" class="tabcontent">
+    <div class="reviews-container">
+
+        <!-- Header -->
+        <div class="reviews-header">
+            <h2>Reviews</h2>
+            <a href="{% url 'review_create' %}" class="btn create-button">Create Review</a>
+        </div>
+
+        <!-- Reviews List -->
+        <ul class="content-list">
+            {% for review in reviews|dictsortreversed:"created_at" %}
+            <li class="list-item">
+
+                <!-- Review Title -->
+                <h3>
+                    <a href="{% url 'review_site' review.id %}" class="item-title">
+                        {{ review.title }}
+                    </a>
+                </h3>
+
+                <!-- Meta Information -->
+                <p class="item-meta">
+                    Created at: {{ review.created_at }}
+                    <span class="author">
+                        by <a href="{% url 'user_profile' review.author.id %}">@{{ review.author.username }}</a>
+                    </span>
+                </p>
+
+                <div class="item-info">
+                    <p class="item-meta">{{ review.game }}</p>
+                    <p class="item-meta">Rating: {{ review.gamerate }}</p>
+                </div>
+
+                <!-- Review Excerpt -->
+                <p class="review-excerpt">
+                    {{ review.content|slice:":50" }}...
+                </p>
+
+                <!-- Review Stats -->
+                <div class="item-stats">
+                    <small id="review-{{ review.id }}-likes">Likes: {{ review.like_count }}</small>
+                    <small id="review-{{ review.id }}-dislikes">Dislikes: {{ review.dislike_count }}</small>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+
+{% block title %}Logout{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/logout.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="logout-container">
+    <h1>Logout</h1>
+    <p>You have been logged out. <a href="{% url 'home' %}">Return to homepage</a></p>
+    <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn logout-button">Sign Out</button>
+    </form>
+</div>
+{% endblock %}

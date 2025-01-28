@@ -1,0 +1,99 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+{% block title %}{{ profile_user.username }}'s Profile{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/profile_tabs.js' %}"></script>
+    <script src="{% static 'js/likes.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-picture-container">
+            {% if profile_user.profile.image %}
+                <img src="{{ profile_user.profile.image.url }}" alt="Profile Picture" class="profile-picture">
+            {% else %}
+                <img src="{% static 'media/deafult.jpg' %}" alt="Default Picture" class="profile-picture">
+            {% endif %}
+        </div>
+        <div class="profile-details">
+            <h1>{{ profile_user.username }}</h1>
+            {% if profile_user.profile.bio %}
+                <p class="bio">{{ profile_user.profile.bio }}</p>
+            {% endif %}
+            <div class="profile-meta">
+                {% if profile_user.profile.birth_date %}
+                    <p><strong>Birth Date:</strong> {{ profile_user.profile.birth_date }}</p>
+                {% endif %}
+                {% if profile_user.profile.location %}
+                    <p><strong>Location:</strong> {{ profile_user.profile.location }}</p>
+                {% endif %}
+                {% if profile_user.profile.website %}
+                    <p><strong>Website:</strong> <a href="{{ profile_user.profile.website }}" target="_blank">Visit</a></p>
+                {% endif %}
+            </div>
+            {% if request.user == profile_user %}
+                <div class="profile-actions">
+                    <a href="{% url 'profile_edit' profile_user.id %}" class="btn edit-button">Edit Profile</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tablink active" onclick="openTab(event, 'Reviews')">Reviews</button>
+            <button class="tablink" onclick="openTab(event, 'Posts')">Posts</button>
+        </div>
+        <div id="Reviews" class="tabcontent active">
+            <h2>Reviews</h2>
+            {% if request.user == profile_user %}
+                <a href="{% url 'review_create' %}?next={% url 'user_profile' profile_user.id %}" class="btn create-button">Create Review</a>
+            {% endif %}
+            <ul class="content-list">
+                {% for review in profile_user.review_set.all|dictsortreversed:"created_at" %}
+                <li class="list-item">
+                    <div class="item-header">
+                        <h3><a href="{% url 'review_site' review.id %}" class="item-title">{{ review.title }}</a></h3>
+                        <p class="item-meta">Created at: {{ review.created_at }}</p>
+                    </div>
+                    <div class="item-info">
+                        <p class="item-meta">{{ review.game }}</p>
+                        <p class="item-meta">Rating: {{ review.gamerate }}</p>
+                    </div>
+                    <p class="item-content">{{ review.content|slice:":50" }}...</p>
+                    <div class="item-stats">
+                        <small id="review-{{ review.id }}-likes">Likes: {{ review.like_count }}</small>
+                        <small id="review-{{ review.id }}-dislikes">Dislikes: {{ review.dislike_count }}</small>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div id="Posts" class="tabcontent">
+            <h2>Posts</h2>
+            {% if request.user == profile_user %}
+                <a href="{% url 'post_create' %}?next={% url 'user_profile' profile_user.id %}" class="btn create-button">Create Post</a>
+            {% endif %}
+            <ul class="content-list">
+                {% for post in profile_user.post_set.all|dictsortreversed:"created_at" %}
+                <li class="list-item">
+                    <h3><a href="{% url 'post_site' post.id %}" class="item-title">{{ post.content|slice:":50" }}...</a></h3>
+                    <p class="item-meta">Created at: {{ post.created_at }}</p>
+                    <div class="item-stats">
+                        <small id="post-{{ post.id }}-likes">Likes: {{ post.like_count }}</small>
+                        <small id="post-{{ post.id }}-dislikes">Dislikes: {{ post.dislike_count }}</small>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

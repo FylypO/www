@@ -1,0 +1,31 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+
+{% block title %}{{ game.title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/game_site.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="game-container">
+    <h1 class="game-title">{{ game.title }}</h1>
+    <div class="game-details">
+        <div class="game-image">
+            <img src="{{ game.image.url }}" alt="{{ game.title }}">
+        </div>
+        <div class="game-info">
+            <p><strong>Genre:</strong> {{ game.genre }}</p>
+            <p><strong>Studio:</strong> {{ game.studio }}</p>
+            <p><strong>Release Date:</strong> {{ game.release_date }}</p>
+        </div>
+    </div>
+    <div class="review-button-container">
+        {% if user.is_authenticated %}
+            <a href="{% url 'review_create_id' game.id %}?next={% url 'game_site' game.id %}" class="btn create-review-button">Create Review</a>
+        {% else %}
+            <a href="/accounts/login" class="btn create-review-button">Create Review</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

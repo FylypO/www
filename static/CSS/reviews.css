@@ -1,0 +1,158 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Reviews Container */
+.reviews-container {
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.reviews-header h2 {
+    font-size: 2rem;
+    color: #007bff;
+}
+
+.create-button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.create-button:hover {
+    background-color: #218838;
+}
+
+/* Reviews List */
+.content-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-item {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.2s ease;
+}
+
+.list-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Review Title */
+.item-title {
+    font-size: 1.4rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.item-title:hover {
+    text-decoration: underline;
+}
+
+/* Meta Information */
+.item-meta {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+}
+
+.author a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.author a:hover {
+    text-decoration: underline;
+}
+
+/* Review Excerpt */
+.review-excerpt {
+    margin: 1rem 0;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Stats */
+.item-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.item-stats small {
+    font-size: 0.9rem;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .reviews-container {
+        padding: 1rem;
+    }
+
+    .reviews-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .create-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .item-title {
+        font-size: 1rem;
+    }
+
+    .item-meta {
+        font-size: 0.8rem;
+    }
+
+    .review-excerpt {
+        font-size: 0.9rem;
+    }
+
+    .item-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

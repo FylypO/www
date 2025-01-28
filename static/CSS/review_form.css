@@ -1,0 +1,46 @@
+.container {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #f9f9f9;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-form p {
+    margin-bottom: 1em;
+}
+
+.review-form label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.review-form input[type="text"],
+.review-form textarea {
+    width: 100%;
+    padding: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 0.25em;
+    box-sizing: border-box; 
+}
+
+.submit-button {
+    padding: 1em 1.5em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.25em;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}

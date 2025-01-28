@@ -1,0 +1,38 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+
+{% block title %}API Page{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/api_page.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="api-container">
+    <h1>API Request Page</h1>
+    <form id="api-form">
+        <label for="endpoint">API Endpoint:</label>
+        <input type="text" id="endpoint" name="endpoint" value="/api/posts/" required>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+    <div id="api-results">
+        <h2>Results:</h2>
+        <pre id="results"></pre>
+    </div>
+</div>
+
+<script>
+document.getElementById('api-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const endpoint = document.getElementById('endpoint').value;
+    fetch(endpoint)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('results').textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+            document.getElementById('results').textContent = 'Error: ' + error;
+        });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "minigames/base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="section-title">Hot Reviews</h1>
+    <div class="reviews-list">
+        {% for review in reviews|slice:'3' %}
+        <div class="review-item">
+            <div class="review-header">
+                {% if user.is_authenticated %}
+                <h3 class="review-title"><a href="/reviews/{{review.id}}">{{ review.title }}</a></h3>
+                <small class="author-info"><a href="{% url 'user_profile' review.author.id %}">@{{ review.author.username }}</a></small>
+                {% else %}
+                <h3 class="review-title"><a href="/accounts/login">{{ review.title }}</a></h3>
+                <small class="author-info"><a href="/accounts/login">@{{ review.author.username }}</a></small>
+                {% endif %}
+            </div>
+            <p class="review-date">{{ review.created_at }}</p>
+            <p class="review-content">{{ review.content|slice:":150" }}...</p>
+            <div class="review-stats">
+                <span class="likes">Likes: {{ review.like_count }}</span>
+                <span class="dislikes">Dislikes: {{ review.dislike_count }}</span>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
